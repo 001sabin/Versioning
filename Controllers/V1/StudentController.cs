@@ -9,7 +9,8 @@ namespace Versioning.Controllers.V1
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/students")]
+   // [Route("api/v{version:apiVersion}/students")]
+    [Route("api/students")]
     public class StudentController : ControllerBase
     {
         private readonly StudentDbContext _context;
@@ -22,8 +23,8 @@ namespace Versioning.Controllers.V1
         public async Task<ActionResult<List<Student>>> GetAllStudentsAsync()
         {
             var stu = await _context.Students.ToListAsync();
-            //return stu;
-            return Ok("V1 controller hit");
+            return stu;
+            //return Ok("V1 controller hit");
 
         }
 

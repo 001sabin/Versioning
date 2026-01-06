@@ -9,7 +9,8 @@ namespace Versioning.Controllers.V2
 {
     [ApiController]
     [ApiVersion("2.0")]
-    [Route("api/v{version:apiVersion}/students")]
+    //[Route("api/v{version:apiVersion}/students")]
+    [Route("api/students")]
     public class StudentController : ControllerBase
     {
         private readonly StudentDbContext _context;
@@ -28,8 +29,8 @@ namespace Versioning.Controllers.V2
                 s.Name,
                 IsAdult = s.Age >= 18 ? "Yes" : "No"
             }).ToList();
-            //return Ok(stu);
-            return Ok("V1 controller hit");
+            return Ok(stu);
+            //return Ok("V1 controller hit");
 
         }
 

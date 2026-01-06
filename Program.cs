@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using Asp.Versioning.Conventions;
 using Microsoft.EntityFrameworkCore;
 using Versioning.Data;
 
@@ -23,9 +24,21 @@ builder.Services.AddApiVersioning(options =>
     options.ReportApiVersions = true;
 
     //  THIS enables /v1, /v2
-    options.ApiVersionReader = new UrlSegmentApiVersionReader();
-});
-
+    //options.ApiVersionReader = new UrlSegmentApiVersionReader();
+    //options.ApiVersionReader = new QueryStringApiVersionReader("api-version");
+    //options.ApiVersionReader = new HeaderApiVersionReader("api-version");
+    //options.ApiVersionReader = new MediaTypeApiVersionReader("v");
+    options.ApiVersionReader = ApiVersionReader.Combine(new QueryStringApiVersionReader("api-version"),
+       new HeaderApiVersionReader("api-version"),
+       new MediaTypeApiVersionReader("v")
+       );
+})
+    //.AddMvc(options =>
+    //{
+    //    options.Conventions.Add(new VersionByNamespaceConvention());
+    //})
+    ;
+builder.Services.AddEndpointsApiExplorer();
 var app = builder.Build();
 
 app.UseHttpsRedirection();
