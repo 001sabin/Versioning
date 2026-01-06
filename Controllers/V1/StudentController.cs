@@ -22,7 +22,9 @@ namespace Versioning.Controllers.V1
         public async Task<ActionResult<List<Student>>> GetAllStudentsAsync()
         {
             var stu = await _context.Students.ToListAsync();
-            return stu;
+            //return stu;
+            return Ok("V1 controller hit");
+
         }
 
         [HttpPost]

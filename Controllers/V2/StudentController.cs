@@ -5,7 +5,7 @@ using Versioning.Data;
 using Versioning.Model;
 
 
-namespace Versioning.Controllers
+namespace Versioning.Controllers.V2
 {
     [ApiController]
     [ApiVersion("2.0")]
@@ -28,7 +28,9 @@ namespace Versioning.Controllers
                 s.Name,
                 IsAdult = s.Age >= 18 ? "Yes" : "No"
             }).ToList();
-            return Ok(stu);
+            //return Ok(stu);
+            return Ok("V1 controller hit");
+
         }
 
         [HttpPost]
